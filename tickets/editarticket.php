@@ -39,6 +39,24 @@ if ($query->num_rows > 0) {
                 <label>Fecha</label>
                 <input type="date" class="form-control" name="fecha" value="<?php echo $person->fecha; ?>">
               </div>
+              <div class="form-group">
+                <select class="form-select" aria-label="Default select example" name="estado">
+                  <option selected value="<?php echo $person->estado; ?>"><?php echo $person->estado; ?></option>
+                  <option value="<?php
+                  if( $person->estado == "EN PROCESO"){
+                      echo 'CONCLUIDO';
+                  }else{
+                      echo 'EN PROCESO';
+                  }
+                  ?>"><?php
+                  if( $person->estado == "EN PROCESO"){
+                      echo 'CONCLUIDO';
+                  }else{
+                      echo 'EN PROCESO';
+                  }
+                  ?></option>
+                </select>
+              </div>
               <input type="hidden" name="id" value="<?php echo $person->id; ?>">
 
               <button type="submit" class="btn btn-default">Actualizar</button>
