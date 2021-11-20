@@ -18,6 +18,24 @@ if (empty($_SESSION["correo"])) {
         <script src="user/vendor/jquery/jquery-3.2.1.min.js"></script>
         <link rel="stylesheet" href="user/vendor/bootstrap/css/bootstrap.min.css">
 
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Inicio</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Salir</span></a>
+                </li>
+                </ul>
+            </div>
+            </nav>
+
+
+
+
         <form action="/tickets/agregar.php" method="POST">
 
         <input type="hidden" value="<?=$_SESSION["empresa"]?>" name="empresa">
@@ -31,9 +49,6 @@ if (empty($_SESSION["correo"])) {
 
         </form>
         <?php include "tickets/tabla.php"; ?>
-
-        <a href="logout.php">Cerrar sesión</a>
-    
 
         <script src="user/vendor/bootstrap/js/bootstrap.min.js"></script>
     </body>
