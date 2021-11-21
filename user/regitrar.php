@@ -63,9 +63,20 @@
 
 					<div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Escriba la contraseña" required>
 					<select style="overflow: hidden;" class="input100" name="empresa" multiple aria-label="multiple select example">
-					<option selected value="Empresa 1">Empresa 1</option>
-					<option value="Empresa 2">Empresa 2</option>
-					<option value="Empresa 3">Empresa 3</option>
+					<?php
+					include '../tickets/conexion.php';
+					$sql1 = "select * from empresa";
+					$query = $con->query($sql1);
+					?>
+					<?php if ($query->num_rows > 0) : ?>
+							<?php while ($r = $query->fetch_array()) : ?>
+
+								<option value="<?php echo $r["nombre"]; ?>"><?php echo $r["nombre"]; ?></option>
+
+								<?php endwhile; ?>
+					<?php else : ?>
+						<option value="">No hay resultados</p>
+					<?php endif; ?>
 					</select>
 					<span class="focus-input100"></span>
 					</div>

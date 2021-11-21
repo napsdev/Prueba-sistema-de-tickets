@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS tickets(
     primary key(id)
 );
 
-
 CREATE TABLE IF NOT EXISTS empresa(
     id bigint unsigned not null,
     nombre varchar (100),
