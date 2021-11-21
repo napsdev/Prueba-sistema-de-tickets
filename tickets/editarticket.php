@@ -21,16 +21,19 @@ if ($query->num_rows > 0) {
 <?php if ($person != null) : ?>
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+      <meta charset="utf-8">
       <title>Tickets</title>
       <link rel="icon" type="image/png" href="../user/images/icons/favicon.ico  "/>
+      <link rel="stylesheet" href="../CSS/style.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
   </head>
-        <body>
-              <script src="../user/vendor/jquery/jquery-3.2.1.min.js"></script>
-              <link rel="stylesheet" href="../user/vendor/bootstrap/css/bootstrap.min.css">
+  <body>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+              
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                   <a class="navbar-brand" href="../empresa.php">Inicio</a>
@@ -46,41 +49,48 @@ if ($query->num_rows > 0) {
                   </div>
                 </nav>
 
-              <form role="form" method="post" action="actualizar.php">
-              <div class="form-group">
-                <label>Descripción</label>
-                <input type="text" class="form-control" name="descripcion" value="<?php echo $person->descripcion; ?>">
-              </div>
-              <div class="form-group">
-                <label>Fecha</label>
-                <input type="date" class="form-control" name="fecha" value="<?php echo $person->fecha; ?>">
-              </div>
-              <div class="form-group">
-                <select class="form-select" aria-label="Default select example" name="estado">
-                  <option selected value="<?php echo $person->estado; ?>"><?php echo $person->estado; ?></option>
-                  <option value="<?php
-                  if( $person->estado == "EN PROCESO"){
-                      echo 'CONCLUIDO';
-                  }else{
-                      echo 'EN PROCESO';
-                  }
-                  ?>"><?php
-                  if( $person->estado == "EN PROCESO"){
-                      echo 'CONCLUIDO';
-                  }else{
-                      echo 'EN PROCESO';
-                  }
-                  ?></option>
-                </select>
-              </div>
-              <input type="hidden" name="id" value="<?php echo $person->id; ?>">
-              <button type="submit" class="btn btn-default">Actualizar</button>
-              <a href="../empresa.php">Cancelar</a>
-            </form>
+ 
+                <div class="ticket-form">
+                <form action="actualizar.php" method="POST">
+                    <input type="hidden" value="<?=$_SESSION["empresa"]?>" name="empresa">
+                    <input type="hidden" value="<?=$_SESSION["correo"]?>" name="correo_usuario">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Fecha</label>
+                        <input type="date" name="fecha" value="<?php echo $person->fecha; ?>" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">Noviembre, octubre y septiembre.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Descripción</label>
+                        <input type="text" name="descripcion" value="<?php echo $person->descripcion; ?>" required class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="form-group">
+                      <select class="form-control" id="exampleFormControlSelect1" name="estado">
+                        <option selected value="<?php echo $person->estado; ?>"><?php echo $person->estado; ?></option>
+                        <option value="<?php
+                        if( $person->estado == "EN PROCESO"){
+                            echo 'CONCLUIDO';
+                        }else{
+                            echo 'EN PROCESO';
+                        }
+                        ?>"><?php
+                        if( $person->estado == "EN PROCESO"){
+                            echo 'CONCLUIDO';
+                        }else{
+                            echo 'EN PROCESO';
+                        }
+                        ?></option>
+                      </select>
+                    </div>
+                    <input type="hidden" name="id" value="<?php echo $person->id; ?>">
+                    <button type="submit" class="btn btn-primary">Actualizar ticket</button>
+                    <a href="../empresa.php">Cancelar</a>
+                </form>
+                </div>
+
           <?php else : ?>
             <p class="alert alert-danger">404 No se encuentra</p>
           <?php endif; ?>
 
-        <script src="../user/vendor/bootstrap/js/bootstrap.min.js"></script>
+      
     </body>
 </html>
