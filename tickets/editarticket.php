@@ -6,7 +6,9 @@ if (empty($_SESSION["correo"])) {
 }
 include __DIR__ . '/conexion.php';
 $user_id = null;
+
 $sql1 = "select * from tickets where id = " ."'".$_GET["id"]."'";
+
 $query = $con->query($sql1);
 $person = null;
 if ($query->num_rows > 0) {

@@ -4,7 +4,14 @@ if (empty($_SESSION["correo"])) {
     exit();
 }
 include __DIR__ . '/conexion.php';
-$sql1 = "select * from tickets where correo_usuario=\"$_SESSION[correo]\"";
+
+if ($_SESSION['empresa'] == "admin") {
+	
+	$sql1 = "select * from tickets";
+}else{
+	$sql1 = "select * from tickets where correo_usuario=\"$_SESSION[correo]\"";
+}
+
 $query = $con->query($sql1);
 ?>
 <?php if ($query->num_rows > 0) : ?>
@@ -27,10 +34,7 @@ $query = $con->query($sql1);
 				}else{
 					echo 'color:#e74c3c;';
 				}?>"><?php echo $r["estado"]; ?></td>
-
-
 				<td style="width:150px;">
-
 					<a href="tickets/editarticket.php?id=<?php echo $r["id"]; ?>" class="btn btn-sm btn-warning">Editar</a>
 					
 					<a href="#" id="del-<?php echo $r["id"]; ?>" class="btn btn-sm btn-danger">Eliminar</a>
