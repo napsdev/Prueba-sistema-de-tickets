@@ -40,7 +40,13 @@ if (empty($_SESSION["correo"])) {
 
         <?php
         include 'tickets/conexion.php';
-        $sql1 = "select * from empresa where nombre ="."'".$_SESSION['empresa']."'";
+
+        if ($_SESSION['empresa'] == "admin") {
+            $sql1 = "select * from empresa";
+        }else{
+            $sql1 = "select * from empresa where nombre ="."'".$_SESSION['empresa']."'";
+        }
+        
         $query = $con->query($sql1);
         ?>
         <?php if ($query->num_rows > 0) : ?>
