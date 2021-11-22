@@ -75,7 +75,7 @@
 
 								<?php endwhile; ?>
 					<?php else : ?>
-						<option value="">No hay resultados</p>
+						<option value="">No hay resultados</option>
 					<?php endif; ?>
 					</select>
 					<span class="focus-input100"></span>

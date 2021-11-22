@@ -38,6 +38,32 @@ if (empty($_SESSION["correo"])) {
             </div>
         </nav>
 
+        <?php
+        include 'tickets/conexion.php';
+        $sql1 = "select * from empresa where nombre ="."'".$_SESSION['empresa']."'";
+        $query = $con->query($sql1);
+        ?>
+        <?php if ($query->num_rows > 0) : ?>
+                <?php while ($r = $query->fetch_array()) : ?>
+
+                   
+                   <div class="card">
+                    <div class="card-header">
+                    <?php echo $r["nombre"]; ?>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">NIT: <?php echo $r["nit"]; ?></h5>
+                        <p class="card-text"><?php echo $r["descripcion"]; ?></p>
+                    </div>
+                    </div>
+                    <?php endwhile; ?>
+        <?php else : ?>
+            <p value="">No hay resultados</p>
+        <?php endif; ?>
+
+
+
+
        <div class="ticket-form">
         <form action="/tickets/agregar.php" method="POST">
             <input type="hidden" value="<?=$_SESSION["empresa"]?>" name="empresa">
